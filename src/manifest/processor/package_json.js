@@ -1,21 +1,23 @@
 import fs from 'fs-extra'
 import findupSync from 'findup-sync'
 
-//////////
+/// ///////
 // Merge manifest.json with name, description and version from package.json
-export default function(manifest) {
+export default function (manifest) {
   const packagePath = findupSync('package.json')
 
   const packageConfig = fs.readJSONSync(packagePath)
 
   const { name, description, version } = packageConfig
 
-  manifest = {
-    name,
-    description,
-    version,
-    ...manifest
-  }
+  manifest =
+    Object.assign(
+      {},
+      manifest,
+      name,
+      description,
+      version
+    )
 
   return {manifest}
 }
