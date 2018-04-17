@@ -12,11 +12,8 @@ export default function (manifest) {
 
   manifest =
     Object.assign(
-      {},
-      manifest,
-      name,
-      description,
-      version
+      { name, description, version },
+      manifest
     )
 
   return {manifest}
